@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오동재 합창 감상문</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1>2024 합창 중간대체 과제</h1>
+    </header>
+
+    <main>
+      <div class="text">
+        <h5>사진은 마우스를 올리면 움직입니다.</h5>
+      </div>
+      <div class="containers">
+        <div class="container">
+          <div class="overlay"></div>
+          <div class="card certificate"></div>
+        </div>
+
+        <div class="container">
+          <div class="overlay"></div>
+          <div class="card ticket"></div>
+        </div>
+
+        <div class="container">
+          <div class="overlay"></div>
+          <div class="card show"></div>
+        </div>
+      </div>
+      <div class="text">
+        <br />
+        25년 인생 중 첫 합창 감상이었는데 너무
+        <span class="highlight">마음이 편안</span> 해지고 좋았습니다.
+        <br />
+        <span class="highlight">근신경계가 이완</span>되고
+        <span class="highlight">부교감신경계가 활성화</span>되어
+        <span class="highlight">몸의 피로를 회복</span>할 수 있었습니다.
+        <br />
+        조금 아쉬웠던 점은 관객들 중 휴대폰을 무음모드로 해놓지 않은 분들이 꽤
+        많아서 중간중간 집중을 흐렸습니다.
+        <br />
+        합창 수업을 통해
+        <span class="highlight">기존에 해보지 못한 경험</span>을 해봐서
+        좋았습니다.
+        <br />
+        <br />
+      </div>
+    </main>
+  </body>
+</html>
+
+<script>
+  document.querySelectorAll(".container").forEach(function (container) {
+    var overlay = container.querySelector(".overlay");
+
+    container.addEventListener("mousemove", function (e) {
+      var x = e.offsetX;
+      var y = e.offsetY;
+      var rotateY = (-1 / 5) * x + 20;
+      var rotateX = (4 / 30) * y - 20;
+
+      overlay.style = `background-position: ${
+        x / 5 + y / 5
+      }%; filter: opacity(${x / 200}) brightness(1.2)`;
+
+      container.style = `transform: perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    container.addEventListener("mouseout", function () {
+      overlay.style = "filter: opacity(0)";
+      container.style =
+        "transform: perspective(350px) rotateY(0deg) rotateX(0deg)";
+    });
+  });
+</script>
+
+<style>
+  .containers {
+    display: flex; /* 가로로 배열하기 위해 flexbox 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 10px; /* 컨테이너들 사이의 간격 */
+    flex-wrap: wrap;
+  }
+  .container {
+    width: 220px;
+    height: 310px;
+    transition: all 0.1s;
+    position: relative;
+    margin: 5px;
+  }
+  .overlay {
+    position: absolute;
+    width: 220px;
+    height: 310px;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 219, 112, 0.8) 45%,
+      rgba(132, 50, 255, 0.6) 50%,
+      transparent 54%
+    );
+    filter: brightness(1.1) opacity(0.8);
+    mix-blend-mode: color-dodge;
+    background-size: 150% 150%;
+    background-position: 100%;
+    transition: all 0.1s;
+  }
+  .card {
+    width: 220px;
+    height: 310px;
+  }
+  .highlight {
+    color: rgb(220, 98, 4); /* 글자 색상을 주황색으로 설정 */
+    font-weight: bold; /* 글자를 두껍게 설정 */
+  }
+  .certificate {
+    background-image: url(certificate.jpg);
+    background-size: cover;
+  }
+  .show {
+    background-image: url(show.jpg);
+    background-size: cover;
+  }
+  .ticket {
+    background-image: url(ticket.jpg);
+    background-size: cover;
+  }
+
+  .text {
+    text-align: center;
+  }
+
+  .header {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 20px 0;
+    margin-bottom: 20px;
+  }
+</style>
